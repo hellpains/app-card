@@ -9,6 +9,7 @@ import {useAppDispatch} from "../../store/store";
 type FormikErrorType = {
    email?: string
    password?: string
+   passwordConfirm?: string
 }
 
 export const Registration = () => {
@@ -18,21 +19,30 @@ export const Registration = () => {
       initialValues: {
          email: '',
          password: '',
+         passwordConfirm: '',
       },
       validate: (values) => {
          const errors: FormikErrorType = {};
          if (!values.email) {
-            errors.email = 'Required';
+            errors.email = 'You need to write an email';
          } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
             errors.email = 'Invalid email address';
          }
 
          if (!values.password) {
-            errors.password = 'Required'
+            errors.password = 'You need to write a password'
          } else if (values.password.length < 8) {
             errors.password = 'Password must be more than 8 characters'
          }
-         return errors;
+
+         if (!values.passwordConfirm) {
+            errors.passwordConfirm = 'You need to write a confirm password'
+         } else if (values.passwordConfirm !== values.password) {
+            errors.passwordConfirm = "Passwords don't match!"
+         }
+
+         return errors
+
       },
       onSubmit: values => {
          dispatch(registerUserTC(values.email, values.password))
@@ -60,16 +70,17 @@ export const Registration = () => {
                          placeholder={'Password'}
                          {...formik.getFieldProps('password')}
                   />
+                  {formik.touched.password && formik.errors.password && <div style={{color: 'red'}}>{formik.errors.password}</div>}
                </div>
-               {formik.touched.password && formik.errors.password && <div style={{color: 'red'}}>{formik.errors.password}</div>}
                <div>
                   <input className={classes.inputPassConfirm}
-                         type="passwordConfirm"
+                         type="password"
                          placeholder={'Confirm password'}
                          {...formik.getFieldProps('passwordConfirm')}
                   />
-                  {formik.touched.password && formik.errors.password && <div style={{color: 'red'}}>{formik.errors.password}</div>}
+                  {formik.touched.passwordConfirm && formik.errors.passwordConfirm && <div style={{color: 'red'}}>{formik.errors.passwordConfirm}</div>}
                </div>
+
                <button type={"submit"} className={classes.btn}>Sign Up</button>
             </form>
             <div className={classes.signIn}>
