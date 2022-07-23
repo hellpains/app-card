@@ -4,8 +4,8 @@ export const cardsAPI = {}
 
 export const authAPI = {
     // отправить на сервер email and password
-    register(data: any) {
-        return instance.post('auth/register', data)
+    register(email: string, password: string) {
+        return instance.post('auth/register', {email, password})
     },
 
     // отправить на сервер email, password and rememberMe
@@ -34,6 +34,11 @@ export const authAPI = {
     },
 }
 
+// type
+export type RegisterDataType = {
+    email: string
+    password: string
+}
 
 // types
 // type UpdatedProfileType = {

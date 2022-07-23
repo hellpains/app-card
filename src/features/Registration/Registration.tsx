@@ -3,18 +3,21 @@ import classes from './Registration.module.css'
 import {NavLink} from "react-router-dom";
 import {useFormik} from "formik";
 
+import {registerUserTC} from "../../store/reducers/registrationReducer";
+import {useDispatch} from "react-redux";
+
 type FormikErrorType = {
    email?: string
    password?: string
 }
 
 export const Registration = () => {
+   const dispatch = useDispatch()
 
    const formik = useFormik({
       initialValues: {
          email: '',
          password: '',
-         rememberMe: false
       },
       validate: (values) => {
          const errors: FormikErrorType = {};
@@ -32,7 +35,7 @@ export const Registration = () => {
          return errors;
       },
       onSubmit: values => {
-         // dispatch(loginTC(values))
+         // dispatch(registerUserTC(values.email, values.password))
          formik.resetForm()
       },
    })
