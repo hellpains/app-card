@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import {useFormik} from "formik";
 
 import {registerUserTC} from "../../store/reducers/registrationReducer";
-import {useDispatch} from "react-redux";
+import {useAppDispatch} from "../../store/store";
 
 type FormikErrorType = {
    email?: string
@@ -12,7 +12,7 @@ type FormikErrorType = {
 }
 
 export const Registration = () => {
-   const dispatch = useDispatch()
+   const dispatch = useAppDispatch()
 
    const formik = useFormik({
       initialValues: {
@@ -35,7 +35,7 @@ export const Registration = () => {
          return errors;
       },
       onSubmit: values => {
-         // dispatch(registerUserTC(values.email, values.password))
+         dispatch(registerUserTC(values.email, values.password))
          formik.resetForm()
       },
    })
@@ -70,11 +70,11 @@ export const Registration = () => {
                   />
                   {formik.touched.password && formik.errors.password && <div style={{color: 'red'}}>{formik.errors.password}</div>}
                </div>
-               <NavLink to={'/profile'} className={classes.btn}>Sign Up</NavLink>
+               <button type={"submit"} className={classes.btn}>Sign Up</button>
             </form>
             <div className={classes.signIn}>
                <span className={classes.info}>Don't have an account?</span>
-               <NavLink to={'/login'} className={classes.signInLink}>
+               <NavLink to={'/profile'} className={classes.signInLink}>
                   Sign In
                </NavLink>
             </div>

@@ -31,7 +31,7 @@ export const registerUserAC = (email: string, password: string) => {
 
 
 // thunks
-export const registerUserTC = (email: string, password: string)=> (dispatch: Dispatch) => {
+export const registerUserTC = (email: string, password: string) => (dispatch: Dispatch<RegisterActionsType>) => {
    authAPI.register(email, password)
       .then(res => {
          dispatch(registerUserAC(email, password))
