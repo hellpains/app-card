@@ -1,0 +1,66 @@
+.regWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.reg {
+    display: block;
+    height: 528px;
+    width: 413px;
+    padding: 35px 33px 42px 33px;
+    background: #fff;
+    box-sizing: border-box;
+}
+.title {
+    color: #000;
+    margin-bottom: 41px;
+}
+
+input {
+    width: 347px;
+}
+
+.inputEmail, .inputPass {
+    margin-bottom: 24px;
+}
+
+.inputPassConfirm {
+    margin-bottom: 60px;
+}
+
+.btn {
+    display: block;
+    width: 347px;
+    border-radius: 20px;
+    padding: 8px;
+    border: none;
+    background: #366EFF;
+    color: #fff;
+}
+
+.signIn {
+    margin-top: 31px;
+}
+
+.signInLink {
+    color: #366EFF;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.signInLink:hover {
+    text-decoration: underline;
+}
+
+.info {
+    display: block;
+    color: #000;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    opacity: .5;
+
+    margin-bottom: 11px;
+}
