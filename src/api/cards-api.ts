@@ -15,7 +15,7 @@ export const authAPI = {
 
     // отправить на сервер пустой объект
     logout() {
-        return instance.delete<ResponseType>('auth/login')
+        return instance.delete('auth/login')
     },
 
     // отправить на сервер пустой объект
